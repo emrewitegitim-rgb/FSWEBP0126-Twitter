@@ -1,6 +1,10 @@
+import Home from "./pages/Home";
+
 function App() {
   return (
-    <h1 class="text-3xl text-red-600 font-bold underline">Hello world!</h1>
+    <div className="bg-black min-h-screen text-white">
+      <Home />
+    </div>
   );
 }
 
