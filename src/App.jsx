@@ -1,9 +1,15 @@
+import { Redirect, Route } from "react-router-dom/cjs/react-router-dom.min";
 import Home from "./pages/Home";
 
 function App() {
   return (
     <div className="bg-black min-h-screen text-white">
-      <Home />
+      <Route exact path="/">
+        <Redirect to="/home" />
+      </Route>
+      <Route path="/home">
+        <Home />
+      </Route>
     </div>
   );
 }
