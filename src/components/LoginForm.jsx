@@ -1,5 +1,7 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { AuthContext } from "../contexts/AuthContext";
 
 function LoginForm() {
   const {
@@ -15,12 +17,11 @@ function LoginForm() {
     mode: "onChange",
   });
 
-  const history = useHistory();
+  const { logIn } = useContext(AuthContext);
 
   function submitHandler(data) {
-    console.log(data);
+    logIn(data);
     reset();
-    history.push("/home");
   }
 
   return (
