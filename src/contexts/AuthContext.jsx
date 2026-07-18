@@ -1,10 +1,11 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export const AuthContext = createContext();
 
 export default function AuthContextProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useLocalStorage("user", null);
 
   const history = useHistory();
 
