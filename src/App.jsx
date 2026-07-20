@@ -1,13 +1,9 @@
 import { Redirect, Route } from "react-router-dom/cjs/react-router-dom.min";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import { useContext } from "react";
-import { AuthContext } from "./contexts/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
-  const { user } = useContext(AuthContext);
-
   return (
     <div className="bg-black min-h-screen text-white">
       <Route exact path="/">
