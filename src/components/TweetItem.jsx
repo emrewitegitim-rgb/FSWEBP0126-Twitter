@@ -1,4 +1,24 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+
 function TweetItem({ tweet }) {
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: function (id) {
+      return axios
+        .delete("https://6811d4a43ac96f7119a5c08b.mockapi.io/tweets/" + id)
+        .then((res) => res.data);
+    },
+    onSuccess: function () {
+      queryClient.invalidateQueries({ queryKey: ["tweets"] });
+    },
+  });
+
+  function handleDelete() {
+    mutation.mutate(tweet.id);
+  }
+
   return (
     <div className="flex gap-4 justify-between items-start p-4 border-b border-b-gray-500">
       <img className="w-8 rounded-full" src={tweet.avatar} />
@@ -28,7 +48,7 @@ function TweetItem({ tweet }) {
           </div>
         </div>
       </div>
-      <i className="fa-solid fa-ellipsis"></i>
+      <i className="fa-solid fa-ellipsis" onClick={handleDelete}></i>
     </div>
   );
 }
